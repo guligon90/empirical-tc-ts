@@ -9,24 +9,9 @@
     "noImplicitAny": true,
     "outDir": "./build",
     "sourceMap": true,
-    "lib": [
-      "es2019",
-      "es2020.bigint",
-      "es2020.string",
-      "es2020.symbol.wellknown"
-    ],
-    "rootDirs": [
-      "./src",
-      "./test"
-    ],
+    "lib": ["es2019", "es2020.bigint", "es2020.string", "es2020.symbol.wellknown"],
+    "rootDirs": ["./src", "./test"]
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.d.ts",
-    "./test/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "build"
-  ]
+  "include": ["./src/**/*.ts", "./src/**/*.d.ts", "./test/**/*.ts"],
+  "exclude": ["node_modules", "build"]
 }

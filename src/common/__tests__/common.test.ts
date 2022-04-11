@@ -1,21 +1,16 @@
-import { isGeneratorFunction, isGeneratorObject } from "util/types";
-import { defaultCompare, findMinMaxValue, randomSequence } from "..";
+import { isGeneratorFunction, isGeneratorObject } from 'util/types';
+import { defaultCompare, findMinMaxValue, randomSequence } from '..';
 
 describe("Unit testing for 'common' utility", () => {
   const testCases = [
     [2, 2, 0],
     [1, 2, -1],
-    [5.32, 5.30, 1],
-  ]
+    [5.32, 5.3, 1],
+  ];
 
-  test
-    .each(testCases)
-    (
-      'tests defaultCompare for (%d, %d). Expects %d',
-      (x, y, expected) => {
-        expect(defaultCompare(x, y)).toStrictEqual(expected);
-      }
-    );
+  test.each(testCases)('tests defaultCompare for (%d, %d). Expects %d', (x, y, expected) => {
+    expect(defaultCompare(x, y)).toStrictEqual(expected);
+  });
 
   it('tests randomSequence function', () => {
     const quantity = 80;
