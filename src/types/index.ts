@@ -7,13 +7,13 @@ export type TMinMax = {
   maxValue: number;
 };
 
-export interface TTimeRatioPromiseArgs {
+export interface ITimeRatioPromiseArgs {
   targetAlgorithm: TCallable<[number[], TCompareFunction?], number[]>;
   guessFunction: TCallable<number, number>;
   problemSize: number;
 }
 
-export interface TTimeRatio {
+export interface ITimeRatio {
   measuredTime?: number;
   problemSize: number;
   timeRatio: number;

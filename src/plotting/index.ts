@@ -1,7 +1,7 @@
 import { Layout, plot, Plot } from 'nodeplotlib';
-import { TTimeRatio } from '../types';
+import { ITimeRatio } from '../types';
 
-const defaultSeries: (keyof TTimeRatio)[] = ['timeRatio'];
+const defaultSeries: (keyof ITimeRatio)[] = ['timeRatio'];
 
 const plotLayouts = (algorithmName: string): Record<string, Partial<Layout>> => {
   return {
@@ -19,14 +19,14 @@ const plotLayouts = (algorithmName: string): Record<string, Partial<Layout>> => 
 };
 
 const mapTimeRatiosToPlotData = (
-  timeRatioData: TTimeRatio[],
-  seriesToPlot: (keyof TTimeRatio)[] = defaultSeries,
+  timeRatioData: ITimeRatio[],
+  seriesToPlot: (keyof ITimeRatio)[] = defaultSeries,
 ): Plot[] => {
   const getSeries = (label: string): (number | undefined)[] => {
-    return timeRatioData.map((item: TTimeRatio) => item[label as keyof TTimeRatio]);
+    return timeRatioData.map((item: ITimeRatio) => item[label as keyof ITimeRatio]);
   };
 
-  const plotData: Plot[] = seriesToPlot.map((series: keyof TTimeRatio) => {
+  const plotData: Plot[] = seriesToPlot.map((series: keyof ITimeRatio) => {
     return {
       x: getSeries('problemSize') as number[],
       y: getSeries(series) as number[],
@@ -43,13 +43,13 @@ const Plotter = (algorithmName: string) => {
   };
 
   const api = {
-    timeRatios: (data: TTimeRatio[]): void => {
+    timeRatios: (data: ITimeRatio[]): void => {
       const plotData = mapTimeRatiosToPlotData(data);
       const layout = plotLayouts(algorithmName).TIME_RATIO;
 
       generatePlot(plotData, layout);
     },
-    executionTimes: (data: TTimeRatio[]): void => {
+    executionTimes: (data: ITimeRatio[]): void => {
       const plotData = mapTimeRatiosToPlotData(data, ['measuredTime', 'theoreticalTime']);
       const layout = plotLayouts(algorithmName).EXECUTION_TIME;
 
