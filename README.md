@@ -2,7 +2,7 @@
 
 POC regarding the experimental determination of time complexities of algorithms written in TypeScript.
 
-I wrote an article on [Medium](https://medium.com/@guligon90/determining-time-complexity-of-algorithms-experimentally-4f844a5080ec), that explains the motivation around this implementation.
+I wrote an article on [Medium](https://medium.com/@guligon90/determining-time-complexity-of-algorithms-experimentally-4f844a5080ec), that explains the motivation behind this implementation.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
