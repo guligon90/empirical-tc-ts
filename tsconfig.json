@@ -9,7 +9,7 @@
     "noImplicitAny": true,
     "outDir": "./build",
     "sourceMap": true,
-    "lib": ["es2019", "es2020.bigint", "es2020.string", "es2020.symbol.wellknown"],
+    "lib": ["es2019", "dom", "es2020.bigint", "es2020.string", "es2020.symbol.wellknown"],
     "rootDirs": ["./src", "./test"]
   },
   "include": ["./src/**/*.ts", "./src/**/*.d.ts", "./test/**/*.ts"],
