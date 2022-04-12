@@ -1,7 +1,19 @@
+import { TMinMax } from '../types';
+
 enum ECompare {
   LESS_THAN = -1,
   BIGGER_THAN = 1,
 }
+
+// Specs for an Intel Core i5-2500K
+// https://en.wikipedia.org/wiki/Instructions_per_second
+const ProcessorSpecs = {
+  MIPS: 83e6,
+  instructions: {
+    perClockCycle: 25.152,
+    perClockCyclePerCore: 6.288,
+  },
+};
 
 const findMinMaxValue = (array: number[]): TMinMax => {
   let minValue = array[0];
@@ -35,4 +47,4 @@ function* randomSequence(quantity: number, max = 30): Generator<number> {
   }
 }
 
-export { defaultCompare, findMinMaxValue, ECompare, randomSequence };
+export { defaultCompare, ECompare, findMinMaxValue, ProcessorSpecs, randomSequence };

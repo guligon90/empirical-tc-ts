@@ -2,16 +2,11 @@ import { performance } from 'perf_hooks';
 
 import mergeSort from '../target-algorithm';
 import { randomSequence } from '../common';
+import { TTimeRatioPromiseArgs, TCallable, TTimeRatio } from '../types';
 
-const timeRatioPromise = ({ targetAlgorithm, guessFn, problemSize }: TTimeRatioPromiseArgs) => {
+const timeRatioPromise = ({ targetAlgorithm, guessFunction, problemSize }: TTimeRatioPromiseArgs) => {
   const promise = new Promise((resolve, reject) => {
     let start = 0;
-
-    const convertOpsToTime = (problemSize: number): number => {
-      // e.g. for a i7 4770K has 127,273 million instructions per second, at 3.9 GHz
-      const convFactor = 1 / 127.373e3;
-      return convFactor * guessFn(problemSize);
-    };
 
     try {
       console.log(`Calculating time ratio with problem size ${problemSize}...`);
@@ -20,11 +15,11 @@ const timeRatioPromise = ({ targetAlgorithm, guessFn, problemSize }: TTimeRatioP
     } catch (error) {
       reject('Something went wrong');
     } finally {
-      const duration = performance.now() - start;
-      const theoreticalTime = convertOpsToTime(problemSize);
-      const timeRatio = theoreticalTime / duration;
+      const measuredTime = performance.now() - start;
+      const theoreticalTime = guessFunction(problemSize);
+      const timeRatio = theoreticalTime / measuredTime;
 
-      resolve({ duration, problemSize, theoreticalTime, timeRatio });
+      resolve({ measuredTime, problemSize, theoreticalTime, timeRatio });
     }
   });
 
@@ -32,17 +27,17 @@ const timeRatioPromise = ({ targetAlgorithm, guessFn, problemSize }: TTimeRatioP
 };
 
 const calculateTimeRatios = async (
-  guessFn: TCallable<number, number>,
+  guessFunction: TCallable<number, number>,
   problemSizes: number[],
-): Promise<TTimeRatios | void> => {
+): Promise<TTimeRatio[] | void> => {
   try {
     const promises = problemSizes.map((problemSize) =>
-      timeRatioPromise({ targetAlgorithm: mergeSort, guessFn, problemSize }),
+      timeRatioPromise({ targetAlgorithm: mergeSort, guessFunction, problemSize }),
     );
 
     const timeRatios = await Promise.all(promises); // g(n)/T(n)
 
-    return timeRatios as TTimeRatios;
+    return timeRatios as TTimeRatio[];
   } catch (error) {
     console.error('Something went wrong');
   }

@@ -1,4 +1,5 @@
 import { ECompare, defaultCompare } from '../common';
+import { TCompareFunction } from '../types';
 
 const merge = (left: number[], right: number[], compareFn: TCompareFunction): number[] => {
   let i = 0;
