@@ -5,7 +5,7 @@ import { ProcessorSpecs } from './common';
 const guessFunction = (n: number, MIPS: number = ProcessorSpecs.MIPS, useConvFactor = true): number => {
   // Theoretical guess function g(n)
   // kPrime? Because g is arbitrary :)
-  const bigOhGuess = (n: number, kPrime = 5) => kPrime * n * Math.log2(n);
+  const bigOhGuess = (n: number, kPrime = 1) => kPrime * n * Math.log2(n);
 
   // TODO: Study a better way of incorporating MIPS into big Oh guess
   return useConvFactor ? (1e3 / MIPS) * bigOhGuess(n) : bigOhGuess(n);
